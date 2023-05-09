@@ -1,3 +1,5 @@
+//import React, { useEffect, useRef } from 'react';
+//import { gsap } from 'gsap';
 import Head from 'next/head';
 import styled from 'styled-components';
 
@@ -14,7 +16,7 @@ const Container = styled.div`
   }
 `;
 
-const TextContainer = styled.div`
+const FirstSectionTextContainer = styled.div`
   z-index: 2;
  
   h1, h2 {
@@ -57,7 +59,12 @@ const SecondSectionTextContainer = styled.div`
   }
 `;
 
+// const Spacer = styled.div`
+//   padding: 100px 0;
+// `;
+
 export default function Home() {
+
   return (
     <>
       <Head>
@@ -67,10 +74,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <TextContainer>
+        <FirstSectionTextContainer>
           <h1>iPhone 13 Pro</h1>
           <h2>Oh. So. Pro.</h2>
-        </TextContainer>
+        </FirstSectionTextContainer>
         <video 
           autoPlay 
           muted
@@ -79,6 +86,7 @@ export default function Home() {
           width={1000}
         />
       </Container>
+      {/* <Spacer /> */}
       <Container>
         <div>
           <video 

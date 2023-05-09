@@ -33,29 +33,27 @@ const TextContainer = styled.div`
 
 `;
 
-const TemporarySpacer = styled.div`
-  padding: 25px 0;
-`;
-
 const SecondSectionTextContainer = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  justify-content: center;
   width: 100%;
 
   p {
-    padding: 55% 30%;
+    padding: 55% 10%;
     position: relative;
     z-index: 1;
     font-size: 2rem;
+    font-weight: bold;
     color: white;
+    line-height: 50px;
   }
 
   video {
     position: absolute;
     object-fit: cover;
     z-index: 1;
-    margin: 0 auto;
   }
 `;
 
@@ -80,8 +78,6 @@ export default function Home() {
           height={900}
           width={1000}
         />
-        <TemporarySpacer />
-        <p>here I am</p>
       </Container>
       <Container>
         <div>
@@ -95,11 +91,11 @@ export default function Home() {
           />
           <SecondSectionTextContainer>
             <p>
-              <span className='highlight'>A dramatically more powerful camera system. </span>
-              <span className='hightlight'>A display so responsive every interaction feels new again. </span>
-              <span className='hightlight'>The world's fastest smartphone chip. </span>
-              <span className='hightlight'>Exceptional durability. </span>
-              <span className='hightlight'>A huge leap in battery life. </span>
+              <span className='highlight'>A dramatically more powerful camera system.{" "}</span>
+              <span className='hightlight'>A display so responsive every interaction feels new again.{" "}</span>
+              <span className='hightlight'>The world's fastest smartphone chip.{" "}</span>
+              <span className='hightlight'>Exceptional durability.{" "}</span>
+              <span className='hightlight'>A huge leap in battery life.{" "}</span>
               <br/>
               <br/>
               <span className='hightlight'>Let's pro.</span>

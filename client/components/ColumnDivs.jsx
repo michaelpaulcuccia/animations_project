@@ -22,22 +22,6 @@ const FirstContainer = styled.div`
    
 `;
 
-const SecondContainer = styled.div`
-  width: 100%;
-  height: 1200px; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  opacity: 0;
-  
-  .smoke-video {
-    object-fit: cover;
-    z-index: 1;
-  }
-   
-`;
-
 const FirstContainerText = styled.div`
   z-index: 2;
  
@@ -57,7 +41,23 @@ const FirstContainerText = styled.div`
 
 `;
 
-const SmokeTextContainer = styled.div`
+const SecondContainer = styled.div`
+  width: 100%;
+  height: 1200px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  opacity: 0;
+  
+  .smoke-video {
+    object-fit: cover;
+    z-index: 1;
+  }
+   
+`;
+
+const SecondContainerText = styled.div`
   display: flex;
   flex-direction: column;
    
@@ -73,43 +73,103 @@ const SmokeTextContainer = styled.div`
   }
 `;
 
+const ThirdContainer = styled.div`
+  width: 100%;
+  height: 1200px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  background: #eee;
+  opacity: 0;
+
+  p {
+    position: absolute;
+    text-align: right;
+    right: 100px;
+    z-index: 1;
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #150909;
+    line-height: 50px;
+  }
+  
+  video {
+    object-fit: contain;
+    padding-right: 600px;
+    margin: 0 auto;
+  } 
+   
+`;
+
+const Spacer = styled.div`
+  padding: 25px 0;
+`;
+
 const ColumnDivs = () => {
 
-  //BOTTOM DIV REF and ANIMATION
-  const bottomDivRef = useRef(null);
-  const tl = gsap.timeline();
+  const secondContainerRef = useRef(null);
+  const tlSecondContainer = gsap.timeline();
+
+  const thirdContainerRef = useRef(null);
+  const tlThirdContainer = gsap.timeline();
 
   useEffect(() => {
 
-    const bottomDiv = bottomDivRef.current;
-    
-    const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-            tl.fromTo(entry.target, 
-            {
-              opacity: 0,
-              x: 800 //starts off 
-            }, 
-            {
-              opacity: 1,
-              duration: 2,
-              x: 0 //returns to original position 
-            });
-              observer.unobserve(entry.target);
-            }
+    const secondContainer = secondContainerRef.current;
+    const thirdContainer = thirdContainerRef.current;
+
+    const firstObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+          tlSecondContainer.fromTo(entry.target, 
+          {
+            opacity: 0,
+            x: 800 //starts off 
+          }, 
+          {
+            opacity: 1,
+            duration: 2,
+            x: 0 //returns to original position 
           });
-        },
-        { threshold: 0.5 } 
-      );
-      
+          firstObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 } 
+    );
   
-      observer.observe(bottomDiv);
+    firstObserver.observe(secondContainer);
+
+    const secondObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+          tlSecondContainer.fromTo(entry.target, 
+          {
+            opacity: 0,
+            y: 800 //starts off 
+          }, 
+          {
+            opacity: 1,
+            duration: 2,
+            y: 0 //returns to original position 
+          });
+          secondObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 } 
+    );
+  
+    secondObserver.observe(thirdContainer);
   
       return () => {
-        observer.disconnect();
+        firstObserver.disconnect();
+        secondObserver.disconnect();
       };
+
     }, []);
 
 
@@ -131,7 +191,7 @@ const ColumnDivs = () => {
         />
       </FirstContainer>
       <SecondContainer 
-        ref={bottomDivRef}
+        ref={secondContainerRef}
         className='smoke-video'
       >
         <video 
@@ -142,7 +202,7 @@ const ColumnDivs = () => {
             height={1200}
             width={1200}
         />
-         <SmokeTextContainer>
+         <SecondContainerText>
             <p>
               <span>A dramatically more powerful camera system.{" "}</span>
               <br/>
@@ -158,8 +218,29 @@ const ColumnDivs = () => {
               <br/>
               <span>Let's pro.</span>
             </p>
-          </SmokeTextContainer>
+          </SecondContainerText>
       </SecondContainer>
+      <ThirdContainer
+        ref={thirdContainerRef}
+      >
+        <video 
+          autoPlay 
+          muted
+          loop 
+          src='/assets/videos/iphone-camera-video.mp4'
+          height={1200}
+          width={1200}
+        />
+        <p>
+          <span>Gathers 47% more light than the iPhone 12{" "}</span>
+          <br/>
+          <span>Ultrawide camera can now capture four times more scene{" "}</span>
+          <br/>
+          <span>New sensor delivers better low-light performance{" "}</span>
+          <br/>
+        </p>
+      </ThirdContainer>
+      <Spacer />
     </Root>
   );
 };

@@ -1,67 +1,6 @@
-//import React, { useEffect, useRef } from 'react';
-//import { gsap } from 'gsap';
 import Head from 'next/head';
-import styled from 'styled-components';
+import ColumnDivs from "@/components/ColumnDivs";
 
-const Container = styled.div`
-  height: 900px;
-  padding: 0% 20%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-
-  video {
-    position: absolute;
-  }
-`;
-
-const FirstSectionTextContainer = styled.div`
-  z-index: 2;
- 
-  h1, h2 {
-    text-align: center;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  h2 {
-    font-size: 3rem;
-  }
-
-  padding-bottom: 10rem;
-
-`;
-
-const SecondSectionTextContainer = styled.div`
-  display: flex;
-  align-items: center;
-  position: relative;
-  justify-content: center;
-  width: 100%;
-
-  p {
-    padding: 55% 10%;
-    position: relative;
-    z-index: 1;
-    font-size: 2rem;
-    font-weight: bold;
-    color: white;
-    line-height: 50px;
-  }
-
-  video {
-    position: absolute;
-    object-fit: cover;
-    z-index: 1;
-  }
-`;
-
-// const Spacer = styled.div`
-//   padding: 100px 0;
-// `;
 
 export default function Home() {
 
@@ -73,44 +12,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container>
-        <FirstSectionTextContainer>
-          <h1>iPhone 13 Pro</h1>
-          <h2>Oh. So. Pro.</h2>
-        </FirstSectionTextContainer>
-        <video 
-          autoPlay 
-          muted
-          src='/assets/videos/intro-animation.mov'
-          height={900}
-          width={1000}
-        />
-      </Container>
-      {/* <Spacer /> */}
-      <Container>
-        <div>
-          <video 
-            autoPlay 
-            muted
-            loop 
-            src='/assets/videos/smoke-video.mp4'
-            height={1200}
-            width={1200}
-          />
-          <SecondSectionTextContainer>
-            <p>
-              <span className='highlight'>A dramatically more powerful camera system.{" "}</span>
-              <span className='hightlight'>A display so responsive every interaction feels new again.{" "}</span>
-              <span className='hightlight'>The world's fastest smartphone chip.{" "}</span>
-              <span className='hightlight'>Exceptional durability.{" "}</span>
-              <span className='hightlight'>A huge leap in battery life.{" "}</span>
-              <br/>
-              <br/>
-              <span className='hightlight'>Let's pro.</span>
-            </p>
-          </SecondSectionTextContainer>
-        </div>
-      </Container>
+      <ColumnDivs />
     </>
   )
 }

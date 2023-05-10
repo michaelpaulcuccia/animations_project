@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import gsap from 'gsap';
 
 const Root = styled.div`
@@ -38,7 +38,7 @@ const SecondContainer = styled.div`
    
 `;
 
-const FirstSectionTextContainer = styled.div`
+const FirstContainerText = styled.div`
   z-index: 2;
  
   h1, h2 {
@@ -57,11 +57,22 @@ const FirstSectionTextContainer = styled.div`
 
 `;
 
+
+const smokeTextEffect = keyframes`
+  60% {
+    text-shadow: 0 0 40px #ffffff;
+  }
+  to {
+    transform: translate3d(10rem, -8rem, 0) skewX(20deg);
+    text-shadow: 0 0 20px #ffffff;
+    opacity: 0;
+  }
+`;
+
 const SmokeTextContainer = styled.div`
   display: flex;
   flex-direction: column;
    
-
   p {
     position: absolute;
     top: 400px;
@@ -71,6 +82,23 @@ const SmokeTextContainer = styled.div`
     color: white;
     line-height: 50px;
     padding-left: 50px;
+    animation: ${smokeTextEffect} 6s ease infinite;
+
+    span:nth-of-type(1) {
+      animation-delay: 3.1s;
+    }
+    span:nth-of-type(2) {
+      animation-delay: 3.1s;
+    }
+    span:nth-of-type(3) {
+      animation-delay: 3.2s;
+    }
+    span:nth-of-type(4) {
+      animation-delay: 3.3s;
+    }
+    span:nth-of-type(5) {
+      animation-delay: 3.4s;
+    }
   }
 `;
 
@@ -118,10 +146,10 @@ const ColumnDivs = () => {
   return (
     <Root>
       <FirstContainer>
-        <FirstSectionTextContainer>
+        <FirstContainerText>
           <h1>iPhone 13 Pro</h1>
           <h2>Oh. So. Pro.</h2>
-        </FirstSectionTextContainer>
+        </FirstContainerText>
         <video 
           className='first-video'
           autoPlay 
@@ -145,19 +173,19 @@ const ColumnDivs = () => {
         />
          <SmokeTextContainer>
             <p>
-              <span className='highlight'>A dramatically more powerful camera system.{" "}</span>
+              <span>A dramatically more powerful camera system.{" "}</span>
               <br/>
-              <span className='hightlight'>A display so responsive every interaction feels new again.{" "}</span>
+              <span>A display so responsive every interaction feels new again.{" "}</span>
               <br/>
-              <span className='hightlight'>The world's fastest smartphone chip.{" "}</span>
+              <span>The world's fastest smartphone chip.{" "}</span>
               <br/>
-              <span className='hightlight'>Exceptional durability.{" "}</span>
+              <span>Exceptional durability.{" "}</span>
               <br/>
-              <span className='hightlight'>A huge leap in battery life.{" "}</span>
+              <span>A huge leap in battery life.{" "}</span>
               <br/>
               <br/>
               <br/>
-              <span className='hightlight'>Let's pro.</span>
+              <span>Let's pro.</span>
             </p>
           </SmokeTextContainer>
       </SecondContainer>

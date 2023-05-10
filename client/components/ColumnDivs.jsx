@@ -172,7 +172,7 @@ const ColumnDivs = () => {
 
     }, []);
 
-
+    //try to fix this repetition
 
   return (
     <Root>

@@ -7,25 +7,35 @@ const Root = styled.div`
   flex-direction: column;
 `;
 
-const Container = styled.div`
+const FirstContainer = styled.div`
   width: 100%;
-  height: 1200px;
+  height: 100vh; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
 
-  .hide-video {
-    opacity: 0;
+  .first-video {
     position: absolute;
+    right: 300px; //Container 1600px, Video 1000px
+  }
+   
+`;
+
+const SecondContainer = styled.div`
+  width: 100%;
+  height: 1200px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  opacity: 0;
+  
+  .smoke-video {
     object-fit: cover;
     z-index: 1;
   }
-
-  video {
-    position: absolute;
-  }
-
+   
 `;
 
 const FirstSectionTextContainer = styled.div`
@@ -53,7 +63,8 @@ const SmokeTextContainer = styled.div`
    
 
   p {
-    position: relative;
+    position: absolute;
+    top: 400px;
     z-index: 1;
     font-size: 2rem;
     font-weight: bold;
@@ -71,26 +82,21 @@ const ColumnDivs = () => {
 
   useEffect(() => {
 
-    //BOTTOM DIV REF (REDEFINED) and OBSERVER FUNCTION 
     const bottomDiv = bottomDivRef.current;
+    
     const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-            //   tl.to(entry.target, {
-            //     x: 200,
-            //     opacity: 1,
-            //     duration: 1.5,
-            //     ease: 'power1.out',
-            //   });
             tl.fromTo(entry.target, 
             {
-                x: -300,
-                duration: 2.5,
+              opacity: 0,
+              x: 800 //starts off 
             }, 
             {
-                opacity: 1,
-                x: 200,
+              opacity: 1,
+              duration: 2,
+              x: 0 //returns to original position 
             });
               observer.unobserve(entry.target);
             }
@@ -98,6 +104,7 @@ const ColumnDivs = () => {
         },
         { threshold: 0.5 } 
       );
+      
   
       observer.observe(bottomDiv);
   
@@ -110,25 +117,23 @@ const ColumnDivs = () => {
 
   return (
     <Root>
-      <Container>
+      <FirstContainer>
         <FirstSectionTextContainer>
           <h1>iPhone 13 Pro</h1>
           <h2>Oh. So. Pro.</h2>
         </FirstSectionTextContainer>
         <video 
+          className='first-video'
           autoPlay 
           muted
           src='/assets/videos/intro-animation.mov'
           height={900}
           width={1000}
         />
-      </Container>
-      <Container>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad blanditiis, quia deserunt odio aut animi rerum cupiditate impedit, aliquam soluta iste accusantium, dicta repellat dolorum mollitia tempora reprehenderit magni iure.</p>
-      </Container>
-      <Container 
+      </FirstContainer>
+      <SecondContainer 
         ref={bottomDivRef}
-        className='hide-video'
+        className='smoke-video'
       >
         <video 
             autoPlay 
@@ -155,7 +160,7 @@ const ColumnDivs = () => {
               <span className='hightlight'>Let's pro.</span>
             </p>
           </SmokeTextContainer>
-      </Container>
+      </SecondContainer>
     </Root>
   );
 };

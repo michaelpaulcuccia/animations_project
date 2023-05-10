@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import gsap from 'gsap';
 
 const Root = styled.div`
@@ -57,18 +57,6 @@ const FirstContainerText = styled.div`
 
 `;
 
-
-const smokeTextEffect = keyframes`
-  60% {
-    text-shadow: 0 0 40px #ffffff;
-  }
-  to {
-    transform: translate3d(10rem, -8rem, 0) skewX(20deg);
-    text-shadow: 0 0 20px #ffffff;
-    opacity: 0;
-  }
-`;
-
 const SmokeTextContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -82,23 +70,6 @@ const SmokeTextContainer = styled.div`
     color: white;
     line-height: 50px;
     padding-left: 50px;
-    animation: ${smokeTextEffect} 6s ease infinite;
-
-    span:nth-of-type(1) {
-      animation-delay: 3.1s;
-    }
-    span:nth-of-type(2) {
-      animation-delay: 3.1s;
-    }
-    span:nth-of-type(3) {
-      animation-delay: 3.2s;
-    }
-    span:nth-of-type(4) {
-      animation-delay: 3.3s;
-    }
-    span:nth-of-type(5) {
-      animation-delay: 3.4s;
-    }
   }
 `;
 

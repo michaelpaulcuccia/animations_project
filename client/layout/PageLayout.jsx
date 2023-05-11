@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from './Container';
 import Nav from './Nav';
+import Footer from './Footer';
 
 export default function PageLayout({children}) {
   return (
@@ -8,6 +9,7 @@ export default function PageLayout({children}) {
       <Nav/>
       <Container>
         {children}
+        <Footer />
       </Container>
     </>
   )
